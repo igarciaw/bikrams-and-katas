@@ -1,0 +1,79 @@
+//Aquí tu código
+const elemento = document.getElementById('button');
+elemento.addEventListener('click', function () {
+  // Cambiar el color de fondo al hacer clic en el elemento
+  elemento.style.backgroundColor = 'blue';
+});
+elemento.addEventListener('mouseover', function () {
+  // Mostrar un mensaje emergente cuando el ratón entra en el elemento
+  console.log('¡Pasa el ratón por encima!');
+});
+
+elemento.addEventListener('mouseout', function () {
+  // Ocultar el mensaje emergente cuando el ratón sale del elemento
+  /* alert('Adiós, hasta la próxima'); */
+});
+
+const movableElement = document.getElementById('movable');
+let isDragging = false;
+let offsetX, offsetY;
+
+movableElement.addEventListener('mousedown', (event) => {
+  isDragging = true;
+  // Obtener la posición del ratón relativa al elemento
+  offsetX = event.clientX - movableElement.offsetLeft;
+  offsetY = event.clientY - movableElement.offsetTop;
+  // Cambiar el cursor a 'grabbing' durante el arrastre 
+  movableElement.style.cursor = 'grabbing';
+});
+
+document.addEventListener('mousemove', (event) => {
+  if (isDragging) {
+    // Mover el elemento a la nueva posición del ratón
+    movableElement.style.left = `${event.clientX - offsetX}px`;
+    movableElement.style.top = `${event.clientY - offsetY}px`;
+  }
+});
+
+document.addEventListener('mouseup', () => {
+  isDragging = false;
+  // Restaurar el cursor a 'grab' después del arrastre
+  movableElement.style.cursor = 'grab';
+});
+
+// boton
+
+let isDraggingButton = false;
+let offsetXBtn, offsetYBtn;
+
+elemento.addEventListener('mousedown', (event) => {
+  isDraggingButton = true;
+  // Obtener la posición del ratón relativa al elemento
+  offsetXBtn = event.clientX - elemento.offsetLeft;
+  offsetYBtn = event.clientY - elemento.offsetTop;
+  // Cambiar el cursor a 'grabbing' durante el arrastre
+  elemento.style.cursor = 'grabbing';
+});
+
+document.addEventListener('mousemove', (event) => {
+  if (isDraggingButton) {
+    // Mover el elemento a la nueva posición del ratón
+    elemento.style.left = `${event.clientX - offsetXBtn}px`;
+    elemento.style.top = `${event.clientY - offsetYBtn}px`;
+  }
+});
+
+document.addEventListener('mouseup', () => {
+  isDraggingButton = false;
+  // Restaurar el cursor a 'grab' después del arrastre
+  elemento.style.cursor = 'grab';
+});
+
+document.addEventListener('keydown', function (event) {
+  // Código a ejecutar cuando se presiona una tecla
+  console.log('Tecla presionada: ' + event.key);
+});
+document.addEventListener('keyup', function (event) {
+  // Código a ejecutar cuando se suelta una tecla
+  console.log('Tecla liberada: ' + event.key);
+});
