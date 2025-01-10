@@ -3,10 +3,12 @@ function getApiLink(pageNumber) {
   return `https://rickandmortyapi.com/api/character/?page=${pageNumber}`;
 }
 function printCharacters(characters) {
+  // reset ul
+  const charactersUlList = document.getElementById('character-list');
+  charactersUlList.innerHTML = '';
+  //   charactersUlList.replaceChildren();
+
   characters.forEach((character) => {
-    // reset ul
-    const charactersUlList = document.getElementById('character-list');
-    charactersUlList.innerHTML = '';
     // img
     const newImg = document.createElement('img');
     newImg.src = character.image;
