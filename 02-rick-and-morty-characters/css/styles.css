@@ -131,6 +131,9 @@ table {
   background-color: #60fbbf;
 }
 
+.logo {
+  cursor: pointer;
+}
 .pagination {
   display: flex;
   justify-content: space-around;
@@ -152,13 +155,17 @@ table {
   cursor: pointer;
   background-color: #03b1c8;
 }
+button:disabled {
+  background-color: #707070;
+  cursor: default;
+}
 
 ul {
   padding-top: 100px;
   list-style: none;
   display: flex;
   flex-wrap: wrap;
- justify-content: center;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -173,9 +180,6 @@ li img {
   width: 270px;
   padding: 2px;
 }
-/* li p {
-  font-size: 10px;
-} */
 
 .strong {
   font-weight: bold;

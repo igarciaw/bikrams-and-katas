@@ -1,14 +1,39 @@
-let pageNumber = 1;
-function getApiLink(pageNumber) {
-  return `https://rickandmortyapi.com/api/character/?page=${pageNumber}`;
+const principalLink = 'https://rickandmortyapi.com/api/character';
+let apiInfo = { totalPages: 0, prevLink: null, nextLink: null };
+
+const logo = document.querySelector('.logo');
+const prevPgBtn = document.getElementById('prev-page');
+const nextPgBtn = document.getElementById('next-page');
+
+function fetchAndPrint(link) {
+  let characters = [];
+  fetch(link)
+    .then((response) => response.json())
+    .then((data) => {
+      for (const result of data.results) {
+        let newCharacter = {};
+        newCharacter.name = result.name;
+        newCharacter.species = result.species;
+        newCharacter.image = result.image;
+        characters.push(newCharacter);
+      }
+      printCharacters(characters);
+      apiInfo.totalPages = data.info.pages;
+      apiInfo.prevLink = data.info.prev;
+      apiInfo.nextLink = data.info.next;
+      activeInactiveButtons();
+    })
+    .catch((error) => {
+      console.error('Error en la solicitud:', error);
+    });
 }
-function printCharacters(characters) {
+function printCharacters(charactersArray) {
   // reset ul
   const charactersUlList = document.getElementById('character-list');
   charactersUlList.innerHTML = '';
   //   charactersUlList.replaceChildren();
 
-  characters.forEach((character) => {
+  charactersArray.forEach((character) => {
     // img
     const newImg = document.createElement('img');
     newImg.src = character.image;
@@ -44,43 +69,18 @@ function printCharacters(characters) {
     charactersUlList.appendChild(newCharacterCard);
   });
 }
-function fetchAndPrint(link) {
-  let characters = [];
-  console.log(characters);
+function activeInactiveButtons(){
+  apiInfo.prevLink === null
+  ? prevPgBtn.setAttribute('disabled', '')
+  : prevPgBtn.removeAttribute('disabled');
 
-  fetch(link)
-    .then((response) => response.json())
-    .then((data) => {
-      for (const result of data.results) {
-        let newCharacter = {};
-        newCharacter.name = result.name;
-        newCharacter.species = result.species;
-        newCharacter.image = result.image;
-        characters.push(newCharacter);
-      }
-      printCharacters(characters);
-    })
-    .catch((error) => {
-      console.error('Error en la solicitud:', error);
-    });
+  apiInfo.nextLink === null
+  ? nextPgBtn.setAttribute('disabled', '')
+  : nextPgBtn.removeAttribute('disabled');
 }
 
-function prevPage() {
-  if (pageNumber > 1) {
-    pageNumber--;
-    fetchAndPrint(getApiLink(pageNumber));
-  }
-}
-function nextPage() {
-  if (pageNumber < 42) {
-    pageNumber++;
-    fetchAndPrint(getApiLink(pageNumber));
-  }
-}
+fetchAndPrint(principalLink);
+logo.addEventListener('click', () => fetchAndPrint(principalLink));
+prevPgBtn.addEventListener('click', () => fetchAndPrint(apiInfo.prevLink));
+nextPgBtn.addEventListener('click', () => fetchAndPrint(apiInfo.nextLink));
 
-const prevPgBtn = document.getElementById('prev-page');
-const nextPgBtn = document.getElementById('next-page');
-prevPgBtn.addEventListener('click', prevPage);
-nextPgBtn.addEventListener('click', nextPage);
-
-fetchAndPrint(getApiLink(pageNumber));
