@@ -191,12 +191,23 @@ button:disabled {
 button.active {
   background-color: #31c803;
 }
-.dots {
-  align-content: end;
+.goToPageSection{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 10px;
+}
+#pageInput{
+  padding: 10px;
+  width: 35px;
+  height: 20px;
+  border-radius: 10px;
+  border: none;
 }
 
 ul {
-  padding-top: 150px;
+  padding-top: 250px;
   list-style: none;
   display: flex;
   flex-wrap: wrap;

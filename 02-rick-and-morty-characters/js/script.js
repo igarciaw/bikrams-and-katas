@@ -6,8 +6,13 @@ const prevPgBtn = document.getElementById('prev-page');
 const nextPgBtn = document.getElementById('next-page');
 const firstPgBtn = document.getElementById('first-page');
 const lastPgBtn = document.getElementById('last-page');
+const pageInput = document.getElementById('pageInput');
+const goToPageBtn = document.getElementById('goToPageBtn');
+const goToPageMsgError = document.querySelector('.goToPageMsgError');
 
 function fetchAndPrint(link) {
+  goToPageMsgError.textContent = '';
+
   let characters = [];
   fetch(link)
     .then((response) => response.json())
@@ -100,6 +105,13 @@ function printNumberButtons(actualPage, lastPage) {
   buttonsDiv.replaceChildren();
   const fragment = document.createDocumentFragment();
 
+  function handleButtonClick(event) {
+    const buttonNumber = event.target.textContent;
+    fetchAndPrint(
+      `https://rickandmortyapi.com/api/character?page=${buttonNumber}`
+    );
+  }
+
   numberOfButtons.forEach((number) => {
     const newPgBtn = document.createElement('button');
     newPgBtn.id = `btn-pg-${number}`;
@@ -109,6 +121,7 @@ function printNumberButtons(actualPage, lastPage) {
       newPgBtn.classList.add('active');
     }
     newPgBtn.textContent = number;
+    newPgBtn.addEventListener('click', handleButtonClick);
     fragment.appendChild(newPgBtn);
   });
   buttonsDiv.appendChild(fragment);
@@ -131,13 +144,31 @@ function activeInactiveButtons() {
   }
 }
 
-fetchAndPrint(principalLink);
+function handleGoToPageClick() {
+  const pageNumber = parseInt(pageInput.value);
+
+  if (isNaN(pageNumber) || pageNumber < 1 || pageNumber > apiInfo.totalPages) {
+    goToPageMsgError.textContent = `Error: introduce un número entre 1 y ${apiInfo.totalPages}`;
+    return;
+  }
+  fetchAndPrint(`https://rickandmortyapi.com/api/character?page=${pageNumber}`);
+}
+
+pageInput.addEventListener('keydown', function (event) {
+  if (event.key === 'Enter') {
+    handleGoToPageClick();
+  }
+});
+
 logo.addEventListener('click', () => fetchAndPrint(principalLink));
+firstPgBtn.addEventListener('click', () => fetchAndPrint(principalLink));
 prevPgBtn.addEventListener('click', () => fetchAndPrint(apiInfo.prevLink));
 nextPgBtn.addEventListener('click', () => fetchAndPrint(apiInfo.nextLink));
-firstPgBtn.addEventListener('click', () => fetchAndPrint(principalLink));
 lastPgBtn.addEventListener('click', () =>
   fetchAndPrint(
     `https://rickandmortyapi.com/api/character?page=${apiInfo.totalPages}`
   )
 );
+goToPageBtn.addEventListener('click', handleGoToPageClick);
+
+fetchAndPrint(principalLink);

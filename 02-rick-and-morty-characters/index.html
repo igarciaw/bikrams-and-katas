@@ -14,18 +14,16 @@
       <div id="pagination" class="pagination">
         <button id="first-page" class="boton">First Page</button>
         <button id="prev-page" class="boton">&lt; Previous Page</button>
-        <div class="buttons-page">
-          <button class="btn-page active">1</button>
-          <button class="btn-page">2</button>
-          <button class="btn-page">3</button>
-          <button class="btn-page">4</button>
-          <button class="btn-page">5</button>
-          <span class="dots">...</span>
-          <button class="btn-page">42</button>
-        </div>
+        <div class="buttons-page"></div>
         <button id="next-page" class="boton">Next Page &gt;</button>
         <button id="last-page" class="boton">Last Page</button>
-
+      </div>
+      <div class="goToPageSection">
+        <div>
+          <input id="pageInput" placeholder="Page" />
+          <button id="goToPageBtn" class="boton">Go</button>
+        </div>
+        <p class="goToPageMsgError"></p>
       </div>
     </header>
     <main>
