@@ -127,23 +127,29 @@ table {
 .header-top {
   position: fixed;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   background-color: #60fbbf;
 }
-
-.logo {
-  cursor: pointer;
-}
-.pagination {
+.body {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
+  flex-direction: column;
 }
-
-.pagination img {
+.logo img {
   margin: 0 10px;
   width: 250px;
+}
+.logoImg {
+  cursor: pointer;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 30px;
 }
 
 .boton {
@@ -155,13 +161,42 @@ table {
   cursor: pointer;
   background-color: #03b1c8;
 }
+button:hover {
+  background-color: #31c803;
+}
 button:disabled {
   background-color: #707070;
   cursor: default;
 }
 
+.buttons-page {
+  padding: 10px;
+  display: flex;
+  gap: 7px;
+}
+.btn-page {
+  font-size: 14px;
+  width: 35px;
+  height: 35px;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  background-color: #03b1c8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button.active {
+  background-color: #31c803;
+}
+.dots {
+  align-content: end;
+}
+
 ul {
-  padding-top: 100px;
+  padding-top: 150px;
   list-style: none;
   display: flex;
   flex-wrap: wrap;

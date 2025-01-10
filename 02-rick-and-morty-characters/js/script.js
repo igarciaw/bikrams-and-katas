@@ -1,9 +1,11 @@
-const principalLink = 'https://rickandmortyapi.com/api/character';
-let apiInfo = { totalPages: 0, prevLink: null, nextLink: null };
+const principalLink = 'https://rickandmortyapi.com/api/character?page=1';
+let apiInfo = { totalPages: null, prevLink: null, nextLink: null };
 
-const logo = document.querySelector('.logo');
+const logo = document.querySelector('.logoImg');
 const prevPgBtn = document.getElementById('prev-page');
 const nextPgBtn = document.getElementById('next-page');
+const firstPgBtn = document.getElementById('first-page');
+const lastPgBtn = document.getElementById('last-page');
 
 function fetchAndPrint(link) {
   let characters = [];
@@ -18,9 +20,14 @@ function fetchAndPrint(link) {
         characters.push(newCharacter);
       }
       printCharacters(characters);
-      apiInfo.totalPages = data.info.pages;
+
       apiInfo.prevLink = data.info.prev;
       apiInfo.nextLink = data.info.next;
+      apiInfo.totalPages = data.info.pages;
+      const actualPage = link.split('=')[1];
+      const lastPage = data.info.pages;
+
+      printNumberButtons(actualPage, lastPage);
       activeInactiveButtons();
     })
     .catch((error) => {
@@ -30,8 +37,8 @@ function fetchAndPrint(link) {
 function printCharacters(charactersArray) {
   // reset ul
   const charactersUlList = document.getElementById('character-list');
-  charactersUlList.innerHTML = '';
-  //   charactersUlList.replaceChildren();
+  // charactersUlList.innerHTML = '';
+  charactersUlList.replaceChildren();
 
   charactersArray.forEach((character) => {
     // img
@@ -66,21 +73,71 @@ function printCharacters(charactersArray) {
     newCharacterCard.appendChild(newImg);
     newCharacterCard.appendChild(name);
     newCharacterCard.appendChild(species);
+
+    //print
     charactersUlList.appendChild(newCharacterCard);
   });
 }
-function activeInactiveButtons(){
-  apiInfo.prevLink === null
-  ? prevPgBtn.setAttribute('disabled', '')
-  : prevPgBtn.removeAttribute('disabled');
+function printNumberButtons(actualPage, lastPage) {
+  const parsedActPg = parseInt(actualPage);
+  const parsedLastPage = parseInt(lastPage);
 
-  apiInfo.nextLink === null
-  ? nextPgBtn.setAttribute('disabled', '')
-  : nextPgBtn.removeAttribute('disabled');
+  let numberOfButtons = [];
+  let startNumber;
+  if (parsedActPg < 3) {
+    startNumber = 1;
+  } else if (parsedActPg + 2 >= parsedLastPage) {
+    startNumber = parsedLastPage - 4;
+  } else {
+    startNumber = parsedActPg - 2;
+  }
+  for (let i = 0; i < 5; i++) {
+    numberOfButtons.push(startNumber);
+    startNumber++;
+  }
+
+  const buttonsDiv = document.querySelector('.buttons-page');
+  buttonsDiv.replaceChildren();
+  const fragment = document.createDocumentFragment();
+
+  numberOfButtons.forEach((number) => {
+    const newPgBtn = document.createElement('button');
+    newPgBtn.id = `btn-pg-${number}`;
+    newPgBtn.classList.add('btn-page');
+
+    if (number === parsedActPg) {
+      newPgBtn.classList.add('active');
+    }
+    newPgBtn.textContent = number;
+    fragment.appendChild(newPgBtn);
+  });
+  buttonsDiv.appendChild(fragment);
+}
+function activeInactiveButtons() {
+  if (apiInfo.prevLink === null) {
+    prevPgBtn.setAttribute('disabled', '');
+    firstPgBtn.setAttribute('disabled', '');
+  } else {
+    prevPgBtn.removeAttribute('disabled');
+    firstPgBtn.removeAttribute('disabled');
+  }
+
+  if (apiInfo.nextLink === null) {
+    nextPgBtn.setAttribute('disabled', '');
+    lastPgBtn.setAttribute('disabled', '');
+  } else {
+    nextPgBtn.removeAttribute('disabled');
+    lastPgBtn.removeAttribute('disabled');
+  }
 }
 
 fetchAndPrint(principalLink);
 logo.addEventListener('click', () => fetchAndPrint(principalLink));
 prevPgBtn.addEventListener('click', () => fetchAndPrint(apiInfo.prevLink));
 nextPgBtn.addEventListener('click', () => fetchAndPrint(apiInfo.nextLink));
-
+firstPgBtn.addEventListener('click', () => fetchAndPrint(principalLink));
+lastPgBtn.addEventListener('click', () =>
+  fetchAndPrint(
+    `https://rickandmortyapi.com/api/character?page=${apiInfo.totalPages}`
+  )
+);
