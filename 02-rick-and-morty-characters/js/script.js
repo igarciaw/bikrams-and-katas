@@ -29,10 +29,10 @@ function fetchAndPrint(link) {
       apiInfo.prevLink = data.info.prev;
       apiInfo.nextLink = data.info.next;
       apiInfo.totalPages = data.info.pages;
-      const actualPage = link.split('=')[1];
+      const currentPage = link.split('=')[1];
       const lastPage = data.info.pages;
 
-      printNumberButtons(actualPage, lastPage);
+      printNumberButtons(currentPage, lastPage);
       activeInactiveButtons();
     })
     .catch((error) => {
@@ -40,7 +40,7 @@ function fetchAndPrint(link) {
     });
 }
 function printCharacters(charactersArray) {
-  // reset ul
+  // reset current print
   const charactersUlList = document.getElementById('character-list');
   // charactersUlList.innerHTML = '';
   charactersUlList.replaceChildren();
@@ -52,24 +52,27 @@ function printCharacters(charactersArray) {
     newImg.alt = `Image of ${character.name}`;
 
     // name
+    //// intro
     const nameIntro = document.createElement('strong');
     nameIntro.classList.add('strong');
     nameIntro.textContent = 'Name: ';
+    //// descr
     const nameDescr = document.createTextNode(character.name);
-
+    //// join
     const name = document.createElement('p');
     name.appendChild(nameIntro);
     name.appendChild(nameDescr);
-    name.appendChild(nameDescr);
 
     // species
+    //// intro
     const speciesIntro = document.createElement('strong');
     speciesIntro.classList.add('strong');
     speciesIntro.textContent = 'Species: ';
-    const speciesDescr = document.createTextNode(character.species);
 
+    //// descr
+    const speciesDescr = document.createTextNode(character.species);
+    //// join
     const species = document.createElement('p');
-    species.appendChild(speciesIntro);
     species.appendChild(speciesIntro);
     species.appendChild(speciesDescr);
 
@@ -83,8 +86,8 @@ function printCharacters(charactersArray) {
     charactersUlList.appendChild(newCharacterCard);
   });
 }
-function printNumberButtons(actualPage, lastPage) {
-  const parsedActPg = parseInt(actualPage);
+function printNumberButtons(currentPage, lastPage) {
+  const parsedActPg = parseInt(currentPage);
   const parsedLastPage = parseInt(lastPage);
 
   let numberOfButtons = [];
