@@ -1,3 +1,53 @@
 .body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, sans-serif;
+  height: 100vh;
   background-color: #ffcc00;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 150px;
+}
+
+.big-face {
+  font-size: 200px;
+}
+
+.face-select {
+  margin: 10px;
+  padding: 10px;
+  background: linear-gradient(to bottom, #f0f0f0, #d9d9d9);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2),
+    -2px -2px 4px rgba(255, 255, 255, 0.5);
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.face-select:active {
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.2),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.5);
+}
+
+.get-face {
+  background: linear-gradient(to bottom, #f0f0f0, #d9d9d9);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2),
+    -2px -2px 4px rgba(255, 255, 255, 0.5);
+  padding: 10px 20px;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.get-face:active {
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.2),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.5);
+  background: linear-gradient(to bottom, #d9d9d9, #f0f0f0);
+  transform: translateY(2px);
 }

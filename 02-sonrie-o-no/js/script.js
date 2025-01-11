@@ -15,4 +15,4 @@ function update() {
   body.style.backgroundColor = randomColor;
 }
 
-updateBtn.addEventListener('click', getFaceValue);
+updateBtn.addEventListener('click', update);
