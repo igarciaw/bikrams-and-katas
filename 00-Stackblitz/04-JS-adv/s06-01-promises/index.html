@@ -26,34 +26,32 @@
           <span>💾 Recuerda guardar tus cambios para no perderlos.</span>
         </div>
       </header>
-      <h2>Ejercicio: Cambio de color de un botón</h2>
+      <h2>Promesas</h2>
+      <h3>Ejercicio</h3>
       <ul>
-        <li>Crea unun botón y añádele un ID.</li>
-        <li>Crea un DIV debajo de ese botón con otro ID</li>
-        <li>Crea un Promt para introducir tu nombre</li>
         <li>
-          Cuando se haga clic en el botón, En el DIV que has creado debe
-          aparecer un saludo "Hola (aqui el nombre que se haya introducido en el
-          prompt), recuerda que JS mola mucho".
+          Crea 3 promesas simulando asincronía con setTimeout(). Cada una tendrá
+          un tiempo (1sec, 3sec, 5sec)
         </li>
-        <li>Si te viene la creatividad, dale al botón y al resultado</li>
+        <li>Cada promesa devolverá un número aleatorio entre 1 y 10</li>
+        <li>
+          Cuando finalicen las 3 promesas el resultado será la suma de los 3
+          números. Sácalos por consola
+        </li>
       </ul>
-      <div class="bonus">
-        <p>
-          <span
-            ><b>🔎 Pistas:</b> Piensa en usar getElementById,
-            InnerHTML/InnerText y addEventListener</span
-          >
-        </p>
-      </div>
-      <br />
-      <!-- Aquí tu código-->
-      <div class="container">
-        <button id="button">Púlsame</button>
-        <div id="movable"></div>
-      </div>
-
-      <hr />
+      <p>
+        Hazlo con la solución que se te ocurra, pero puedes intentar hacerlo con
+        un
+        <a
+          href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise/all"
+          >Promise.all</a
+        >
+        y la suma con el método
+        <a
+          href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce"
+          >Reduce</a
+        >
+      </p>
     </main>
     <script src="./script.js"></script>
   </body>

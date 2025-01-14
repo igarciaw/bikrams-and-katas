@@ -26,29 +26,33 @@
           <span>💾 Recuerda guardar tus cambios para no perderlos.</span>
         </div>
       </header>
-
-      <h2>Ejercicio Fetch</h2>
+      <h2>Asyn/Await</h2>
+      <h3>Ejercicio</h3>
       <ul>
+        <li>Entra en la API `https://jsonplaceholder.typicode.com/users/`</li>
         <li>
-          Puedes revisar la documentación de la API:
-          <strong>https://sv443.net/jokeapi/v2/</strong>
+          pásale el user ID despues de USER para taraer los siguientes datos
+          (ejemplo https://jsonplaceholder.typicode.com/users/1`)
         </li>
         <li>
-          Accede al siguiente endpoint:
-          <strong>https://v2.jokeapi.dev/joke/Programming?lang=es</strong>
+          Saca los datos por consola denombre, email y ciudad de los usuarios 1,
+          2 y 3
         </li>
-        <li>
-          Cada vez que se pulse el botón
-          <strong>"Obtener chiste"</strong> deberá a aparecer en el espacio de
-          <strong>"chiste"</strong>, el chiste que nos trae la API
-        </li>
-        <li>Dale estilos como mejor te parezca</li>
+        <li>Usa async/await</li>
       </ul>
-      <h2>¡Chistes Divertidos!</h2>
-      <p>Haz clic en el botón para obtener un chiste:</p>
-
-      <button id="obtenerChiste">Obtener Chiste</button>
-      <p id="chiste"></p>
+      <p>
+        Hazlo con la solución que se te ocurra, pero puedes intentar hacerlo con
+        un
+        <a
+          href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise/all"
+          >Promise.all</a
+        >
+        y la suma con el método
+        <a
+          href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce"
+          >Reduce</a
+        >
+      </p>
     </main>
     <script src="./script.js"></script>
   </body>
