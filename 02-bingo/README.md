@@ -17,7 +17,3 @@ Para ver que hemos entendido las fases de la programación vamos a programar un 
 - Fácil verdad!!!
 
 Por cierto, si no sabes cómo generar números aleatorios no repetidos, inténtalo. Inténtalo otra vez. Luego pregunta a las compañeras. Y por último pregúntanos a los profes.
-
-## Info extra
-
-Hemos utilizado este ejercicio para mostrar las diferentes fases que seguimos a la hora de programar. Por ello hemos creado varias versiones del ejercicio en cada una de las carpetas **fase-1**, **fase-2**...
