@@ -65,7 +65,6 @@ header button:disabled {
   display: flex;
   align-items: center;
   justify-content: center;
-
   border-radius: 50%;
   border: #bb2020 solid 4px;
   width: 30px;
