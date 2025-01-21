@@ -72,7 +72,9 @@ header button:disabled {
   font-weight: bold;
   padding: 2px;
 }
-
+.number-match {
+  background-color: #1ccaff;
+}
 .msg {
   /* display: none; */
   text-align: center;

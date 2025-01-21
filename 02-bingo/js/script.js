@@ -23,19 +23,29 @@ function numbersGenerator(quantity, numbers = []) {
   }
   return numbers;
 }
-function rendernumbers(container, array) {
-  container.innerHTML = '';
-  array.forEach((element) => {
-    container.innerHTML += `<li class="number id="${element}">${element}</li>`;
+function renderBallsNumbers() {
+  ballsContainer.innerHTML = '';
+  ballsNumbers.forEach((number) => {
+    ballsContainer.innerHTML += `<li class="number">${number}</li>`;
   });
 }
+function renderCardNumbers() {
+  cardContainer.innerHTML = '';
+  cardNumbers.forEach((number) => {
+    ballsNumbers.includes(number)
+      ? (cardContainer.innerHTML += `<li class="number match-match">${number}</li>`)
+      : (cardContainer.innerHTML += `<li class="number">${number}</li>`);
+  });
+}
+
 function drawBall() {
   numbersGenerator(1, ballsNumbers);
-  rendernumbers(ballsContainer, ballsNumbers);
+  renderBallsNumbers(ballsContainer, ballsNumbers);
+  renderCardNumbers();
 }
 
 //listeners
 drawBallBtn.addEventListener('click', drawBall);
 
 //init
-rendernumbers(cardContainer, cardNumbers);
+renderCardNumbers();
