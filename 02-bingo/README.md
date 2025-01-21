@@ -4,7 +4,7 @@
 
 Para ver que hemos entendido las fases de la programación vamos a programar un bingo!
 
-![mockup.svg](./info/mockup.svg)
+![mockup.svg](./assets/mockup.svg)
 
 - Al arrancar la página:
   - La parte superior "Bolitas" debe aparecer vacía.
