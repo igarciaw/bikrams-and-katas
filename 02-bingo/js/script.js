@@ -42,20 +42,26 @@ function renderCardNumbers() {
 
 function drawBall() {
   numbersGenerator(1, ballsNumbers);
-  renderBallsNumbers(ballsContainer, ballsNumbers);
+  renderBallsNumbers();
   renderCardNumbers();
+  checkBingoWin();
+}
+
+function checkBingoWin() {
+  // TODO
+  // checkear si están todos los números del cartón en las bolas
+  // desactivar botones
+  // mostrar mensaje
 }
 
 let myInterval;
 function autoDrawBall() {
-  // debugger;
-
-  if (playBtn.textContent === 'Play') {
+  if (playBtn.textContent === 'Autoplay') {
     myInterval = setInterval(drawBall, 1000);
     playBtn.textContent = 'Pause';
-  } else if (playBtn.textContent === 'Pause') {
+  } else {
     clearInterval(myInterval);
-    playBtn.textContent = 'Play';
+    playBtn.textContent = 'Autoplay';
   }
 }
 
@@ -67,5 +73,4 @@ playBtn.addEventListener('click', autoDrawBall);
 renderCardNumbers();
 
 //WIP:
-// botón de automático
 // mensaje y disabled botones
