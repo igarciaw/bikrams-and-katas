@@ -23,6 +23,8 @@ function numbersGenerator(quantity, numbers = []) {
   }
   return numbers;
 }
+
+// renders
 function renderBallsNumbers() {
   ballsContainer.innerHTML = '';
   ballsNumbers.forEach((number) => {
@@ -33,7 +35,7 @@ function renderCardNumbers() {
   cardContainer.innerHTML = '';
   cardNumbers.forEach((number) => {
     ballsNumbers.includes(number)
-      ? (cardContainer.innerHTML += `<li class="number match-match">${number}</li>`)
+      ? (cardContainer.innerHTML += `<li class="number number-match">${number}</li>`)
       : (cardContainer.innerHTML += `<li class="number">${number}</li>`);
   });
 }
@@ -44,8 +46,26 @@ function drawBall() {
   renderCardNumbers();
 }
 
+let myInterval;
+function autoDrawBall() {
+  // debugger;
+
+  if (playBtn.textContent === 'Play') {
+    myInterval = setInterval(drawBall, 1000);
+    playBtn.textContent = 'Pause';
+  } else if (playBtn.textContent === 'Pause') {
+    clearInterval(myInterval);
+    playBtn.textContent = 'Play';
+  }
+}
+
 //listeners
 drawBallBtn.addEventListener('click', drawBall);
+playBtn.addEventListener('click', autoDrawBall);
 
 //init
 renderCardNumbers();
+
+//WIP:
+// botón de automático
+// mensaje y disabled botones
