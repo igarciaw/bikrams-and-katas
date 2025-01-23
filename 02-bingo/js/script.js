@@ -52,13 +52,12 @@ function drawBall() {
   numbersGenerator(1, ballsNumbers);
   renderBallsNumbers();
   renderCardNumbers();
-  checkBingoWin();
 }
 
 let myInterval;
 function autoDrawBall() {
   if (playBtn.textContent === 'Autoplay') {
-    myInterval = setInterval(drawBall, 1000);
+    myInterval = setInterval(drawBall, 500);
     playBtn.textContent = 'Pause';
   } else {
     clearInterval(myInterval);
@@ -68,10 +67,10 @@ function autoDrawBall() {
 
 function bingo() {
   clearInterval(myInterval);
-  drawBallBtn.classList.add("disabled");
-  playBtn.classList.add("disabled");
+  drawBallBtn.disabled = true;
+  playBtn.disabled = true;
   const msg = document.querySelector('.msg');
-  msg.style.display = block;
+  msg.style.display = 'block';
 }
 
 //listeners

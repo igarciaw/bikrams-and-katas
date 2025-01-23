@@ -36,15 +36,14 @@ header button:hover {
 header button:active {
   background-color: #ff4d4d;
   transform: translateY(2px);
-}
-header button:active {
   box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.2),
     inset -2px -2px 4px rgba(255, 255, 255, 0.5);
-  transform: translateY(2px);
 }
 header button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .box {
@@ -61,7 +60,6 @@ header button:disabled {
   gap: 5px;
 }
 .number {
-  /* background-color: #1ccaff; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,7 +74,7 @@ header button:disabled {
   background-color: #1ccaff;
 }
 .msg {
-  /* display: none; */
+  display: none;
   text-align: center;
   font-weight: bold;
   font-size: 30px;
