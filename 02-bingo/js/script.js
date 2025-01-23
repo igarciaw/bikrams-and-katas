@@ -1,12 +1,13 @@
 //buttons
 const drawBallBtn = document.querySelector('.draw-ball-btn');
 const playBtn = document.querySelector('.play-btn');
+const cardPlays = 20;
 
 //containers
 const ballsContainer = document.querySelector('.js-balls-container');
 let ballsNumbers = [];
 const cardContainer = document.querySelector('.js-card-container');
-const cardNumbers = numbersGenerator(20);
+const cardNumbers = numbersGenerator(cardPlays);
 
 //functions
 function getRandomInt() {
@@ -33,11 +34,18 @@ function renderBallsNumbers() {
 }
 function renderCardNumbers() {
   cardContainer.innerHTML = '';
+  let count = 0;
   cardNumbers.forEach((number) => {
-    ballsNumbers.includes(number)
-      ? (cardContainer.innerHTML += `<li class="number number-match">${number}</li>`)
-      : (cardContainer.innerHTML += `<li class="number">${number}</li>`);
+    if(ballsNumbers.includes(number)){
+       (cardContainer.innerHTML += `<li class="number number-match">${number}</li>`);
+       count++;
+       } else {
+       (cardContainer.innerHTML += `<li class="number">${number}</li>`);
+    }      
   });
+  if (count === cardPlays){
+    bingo();
+  }
 }
 
 function drawBall() {
@@ -45,13 +53,6 @@ function drawBall() {
   renderBallsNumbers();
   renderCardNumbers();
   checkBingoWin();
-}
-
-function checkBingoWin() {
-  // TODO
-  // checkear si están todos los números del cartón en las bolas
-  // desactivar botones
-  // mostrar mensaje
 }
 
 let myInterval;
@@ -65,12 +66,17 @@ function autoDrawBall() {
   }
 }
 
+function bingo() {
+  clearInterval(myInterval);
+  drawBallBtn.classList.add("disabled");
+  playBtn.classList.add("disabled");
+  const msg = document.querySelector('.msg');
+  msg.style.display = block;
+}
+
 //listeners
 drawBallBtn.addEventListener('click', drawBall);
 playBtn.addEventListener('click', autoDrawBall);
 
 //init
 renderCardNumbers();
-
-//WIP:
-// mensaje y disabled botones
