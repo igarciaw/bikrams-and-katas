@@ -4,12 +4,6 @@ const btn = document.querySelector('.js-btn');
 const jokeListContainer = document.querySelector('.js-joke-list');
 let jokeListItems = JSON.parse(localStorage.getItem('jokeList')) || [];
 
-function printJokeList() {
-  jokeListContainer.innerHTML = '';
-  jokeListItems.forEach((joke) => {
-    jokeListContainer.innerHTML += `<li>${joke}</li>`;
-  });
-}
 function getJoke() {
   fetch('https://api.chucknorris.io/jokes/random')
     .then((response) => response.json())
@@ -22,6 +16,29 @@ function getJoke() {
       console.error('Error en la solicitud:', error);
     });
 }
+function printJokeList() {
+  jokeListContainer.innerHTML = '';
+  jokeListItems.forEach((joke, i) => {
+    jokeListContainer.innerHTML += `
+      <li>
+          <p>${joke}</p>
+          <div id="${i}"class="js-delete-joke">x</div>
+      </li>
+      `;
+  });
+}
 
+function deleteJoke(ev) {
+  console.log(ev.target.id);
+  jokeListItems.forEach((joke, i) => {
+    if (i == ev.target.id) {
+      jokeListItems.splice(i, 1);
+      localStorage.setItem('jokeList', JSON.stringify(jokeListItems));
+      printJokeList();
+    }
+  });
+}
 btn.addEventListener('click', getJoke);
+jokeListContainer.addEventListener('click', deleteJoke);
+
 printJokeList();
