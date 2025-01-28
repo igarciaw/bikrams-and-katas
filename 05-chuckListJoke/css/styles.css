@@ -27,5 +27,14 @@ button:hover {
   background-color: #0056b3;
 }
 
-
-
+#jokeList {
+  width: 80vw;
+  list-style: none;
+}
+#jokeList li {
+  background-color: white;
+  margin: 10px 0;
+  padding: 20px 10px;
+  border: #a0a0a0 solid 1px;
+  border-radius: 10px;
+}
