@@ -17,7 +17,11 @@ function getJoke() {
     });
 }
 function setLS() {
-  localStorage.setItem('jokeList', JSON.stringify(jokeListItems));
+  if (jokeListItems.length > 0) {
+    localStorage.setItem('jokeList', JSON.stringify(jokeListItems));
+  } else {
+    localStorage.removeItem('jokeList');
+  }
 }
 function printJokeList() {
   jokeListContainer.innerHTML = '';
