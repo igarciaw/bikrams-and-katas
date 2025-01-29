@@ -1,5 +1,3 @@
-// bonus: eliminar chiste + eliminar todos los chistes
-
 const btn = document.querySelector('.js-btn');
 const jokeListContainer = document.querySelector('.js-joke-list');
 const deleteAllBtn = document.querySelector('.js-delete-all-btn');
