@@ -57,3 +57,14 @@ button:hover {
   align-items: center;
   font-weight: bold;
 }
+.delete-btn {
+  display: flex;
+  align-self: center;
+  background-color: #fd7a00;
+}
+.delete-btn:hover {
+  background-color: #ff0000;
+}
+.hidden {
+  display: none;
+}
