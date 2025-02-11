@@ -18,7 +18,7 @@ async function getUserData(userID) {
   return userData;
 }
 
-getUserData(1).then(console.log);
+// getUserData(1).then(console.log);
 
 Promise.all([getUserData(1), getUserData(2), getUserData(3)]).then((values) => {
   values.forEach((value) =>
